@@ -6,4 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Plan extends Model
 {
+    protected $fillable = [
+        'description',
+        'numberOfClients',
+        'price',
+        'gigabytesStorage',
+    ]; 
 }
