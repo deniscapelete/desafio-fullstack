@@ -32,7 +32,7 @@ export function CardUser() {
             }
             if (user) {
                         return (
-                                    <div className=" border border-orange-400 rounded-lg p-2 justify-center  items-center content-center flex flex-col">
+                                    <div className="rounded-lg p-2 justify-center  items-center content-center flex flex-col shadow-md shadow-gray-300 bg-white">
                                                 <h2 className="text-xl text-center font-bold text-orange-400">Dados do usuário</h2>
                                                 <div className="space-y-1 py-5 flex-1">
                                                             <p className="text-gray-700"><span className="font-semibold text-orange-400">Nome:</span> {user?.name}</p>
