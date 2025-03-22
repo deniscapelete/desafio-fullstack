@@ -1,5 +1,4 @@
 import { CardUser } from "@/components/cardUser"
-import { UserContextProvider } from "@/contexts/userContext"
 
 export const Home = () => {
   return (
@@ -8,9 +7,7 @@ export const Home = () => {
         Desafio para Desenvolvedor - Inmediam
       </h1>
       <div className="flex-1 content-center">
-        <UserContextProvider>
-          <CardUser />
-        </UserContextProvider>
+        <CardUser />
       </div>
     </div>
   )

@@ -1,14 +1,35 @@
-import { useUserContext } from "@/contexts/userContext"
-import { Button } from "./button";
 
+import { Button } from "./button";
+import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { User } from "@/type/user";
 
 export function CardUser() {
-            const userContext = useUserContext();
+            const [user, setUser] = useState<User>();
+            const [loading, setLoading] = useState<boolean>(false)
 
-            if (!userContext) {
-                        return <div>Carregando...</div>; // ou qualquer outra mensagem de fallback
+            const getUser = async () => {
+                        setLoading(true);
+                        try {
+                                    const response = await fetch(`${import.meta.env.VITE_API_URL}/user`);
+                                    const json = await response.json();
+                                    setUser(json);
+                        } catch {
+                                    console.error("Falha ao carregar dados do usuário. Tente novamente.");
+                        }
+                        setLoading(false);
             }
-            const { user } = userContext
+
+            useEffect(() => {
+                        getUser();
+            }, []);
+
+            if (loading) {
+                        return <div className="text-gray-700">Carregando...</div>
+            }
+            if (!user) {
+                        return <div className="text-gray-700">Falha ao carregar dados do usuário.</div>
+            }
             if (user) {
                         return (
                                     <div className=" border border-orange-400 rounded-lg p-2 justify-center  items-center content-center flex flex-col">
@@ -23,9 +44,11 @@ export function CardUser() {
                                                             <p className="text-gray-700">Nenhum plano contratado</p>
                                                 </div>
                                                 <div className="space-y-2 w-full">
-                                                            <Button>
-                                                                        Ver planos
-                                                            </Button>
+                                                            <Link to={`/plans/${user.id}`}>
+                                                                        <Button>
+                                                                                    Ver planos
+                                                                        </Button>
+                                                            </Link>
                                                 </div>
 
                                     </div>
