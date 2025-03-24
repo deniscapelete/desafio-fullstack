@@ -2,7 +2,7 @@ import { Plan } from "@/type/plan";
 
 export function CardPlan({ plan }: { plan: Plan }) {
             const description = plan.description.split("/");
-            const price = plan.price.toString().replace(".", ",")
+            const price = plan.price.toString().replace(".", ",");
 
             return (
                         <div className="w-[360px] rounded-xl bg-white space-y-5 py-5 text-gray-700 shadow-md shadow-gray-300">
