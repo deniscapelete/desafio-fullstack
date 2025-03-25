@@ -12,4 +12,9 @@ class Plan extends Model
         'price',
         'gigabytesStorage',
     ]; 
+
+    public function contracts()
+        {
+            return $this->hasMany(Contract::class);
+        }
 }

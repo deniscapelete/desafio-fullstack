@@ -13,9 +13,18 @@ class Contract extends Model
 
     protected $fillable = [
         'user_id',
+        'plan_id',
         'price',
         'active',
         'payment_date',
     ];    
-   
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function plan()
+    {
+        return $this->belongsTo(Plan::class);
+    }
 }
