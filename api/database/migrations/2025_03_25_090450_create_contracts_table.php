@@ -18,9 +18,12 @@ return new class extends Migration
             $table->foreignId('user_id')
                 ->constrained()
                 ->cascadeOnDelete();
-                $table->decimal('price', 13, 2);
-                $table->boolean('active')->default(false);
-                $table->date('payment_date')->nullable();
+            $table->foreignId('plan_id')
+                ->constrained()
+                ->cascadeOnDelete();
+            $table->decimal('price', 13, 2);
+            $table->boolean('active')->default(false);
+            $table->date('payment_date')->nullable();
             $table->timestamps();
 
         });
