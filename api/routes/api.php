@@ -1,8 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContractController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,4 +28,4 @@ Route::apiResource('plans', PlanController::class, ['only' => 'index']);
 
 Route::apiSingleton('user', UserController::class, ['only' => 'show']);
 
-Route::post('users/{user}/contracts/{plan}', [UserController::class, 'storeContract']);
+Route::post('users/{user}/contracts', [ContractController::class, 'store']);

@@ -15,5 +15,9 @@ class Payment extends Model
         'is_paid',
         'payment_date',
     ]; 
-
+    
+    public function contract()
+    {
+        return $this->belongsTo(Contract::class);
+    }
 }
