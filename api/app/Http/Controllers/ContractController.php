@@ -30,4 +30,22 @@ class ContractController extends Controller
     
             return response()->json(['contract' => $contract, 'payment' => $payment], 201);
         }
+
+
+        public function show(User $user)
+        {
+            $contract = $user->contracts()
+                ->with('plan') // Garante que o plano virá junto
+                ->latest('created_at')
+                ->first();
+        
+            if (!$contract) {
+                return response()->json(['message' => 'Nenhum contrato encontrado'], 404);
+            }
+        
+            // Retorna tudo em uma única resposta
+            return response()->json([
+                'contract' => $contract,              
+            ]);
+        }
 }

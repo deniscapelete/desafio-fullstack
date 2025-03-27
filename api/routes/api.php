@@ -29,3 +29,4 @@ Route::apiResource('plans', PlanController::class, ['only' => 'index']);
 Route::apiSingleton('user', UserController::class, ['only' => 'show']);
 
 Route::post('users/{user}/contracts', [ContractController::class, 'store']);
+Route::get('users/{user}/contracts', [ContractController::class, 'show']);
