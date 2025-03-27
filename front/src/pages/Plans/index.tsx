@@ -74,44 +74,6 @@ export const Plans = () => {
           </div>
         </>
       }
-
-
-
-
-      {/* <form
-        action={`${import.meta.env.VITE_API_URL}/users/${userId}/contracts`}
-        method="POST"
-        // Importante para o Laravel receber corretamente:
-        encType="multipart/form-data"
-      >
-        <input
-          type="hidden"
-          name="plan_id"
-          value={2}
-        />
-
-        <div className="form-group">
-          <label htmlFor="payment_method">Método de Pagamento:</label>
-          <select
-            id="payment_method"
-            name="payment_method"
-            required
-            defaultValue="pix"
-          >
-            <option value="pix">PIX</option>
-            <option value="credit_card">Cartão de Crédito</option>
-          </select>
-        </div>
-
-        <button type="submit" className="submit-btn">
-          Confirmar Pagamento
-        </button>
-      </form> */}
-
-
-
-
-
     </div >
 
 

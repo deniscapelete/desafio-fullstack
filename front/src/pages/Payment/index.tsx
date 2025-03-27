@@ -1,9 +1,13 @@
 import { Button } from '@/components/button';
-import { useState } from 'react';
+import { Contract } from '@/type/contract';
+import { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 
 export function Payment() {
             const [isPaid, setIsPaid] = useState(false);
             const [isLoading, setIsLoading] = useState(false);
+            const [contract, setContract] = useState<Contract>();
+            const { userId } = useParams();
 
             const handlePayment = () => {
                         setIsLoading(true);
@@ -12,6 +16,24 @@ export function Payment() {
                                     setIsLoading(false);
                         }, 2000);
             };
+
+            const getContract = async () => {
+                        try {
+                                    const response = await fetch(`${import.meta.env.VITE_API_URL}/users/${userId}/contracts`);
+                                    const json = await response.json();
+                                    setContract(json.contract);
+                        } catch {
+                                    console.error("Falha ao carregar dados do usuário. Tente novamente.");
+                        }
+            }
+
+            useEffect(() => {
+                        getContract();
+                        // eslint-disable-next-line react-hooks/exhaustive-deps
+            }, []);
+
+            const price = contract?.price.toString().replace(".", ",");
+
 
             return (
                         <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4">
@@ -36,7 +58,7 @@ export function Payment() {
                                                                                                 </div>
                                                                                                 <div className="flex justify-between">
                                                                                                             <span className="text-gray-600">Valor:</span>
-                                                                                                            <span className="font-bold text-orange-400">R$ 87,00</span>
+                                                                                                            <span className="font-bold text-orange-400">R$ {price}</span>
                                                                                                 </div>
                                                                                                 <div className="flex justify-between">
                                                                                                             <span className="text-gray-600">Beneficiário:</span>
@@ -56,8 +78,15 @@ export function Payment() {
                                                             <div className="text-center py-8">
                                                                         <h2 className="text-xl font-bold mb-2">Pagamento Aprovado!</h2>
                                                                         <p className="text-gray-600">Pagamento realizado sucesso.</p>
-                                                                        <p className="text-sm text-gray-500 mt-4">Código de transação: PIX-123456789</p>
+                                                                        <p className="text-sm text-gray-500 my-4">Código de transação: PIX-123456789</p>
+                                                                        <p className="text-sm text-gray-500 my-4">Para verificar as informações do contrato clique no botão abaixo...</p>
+                                                                        <Link to={`/`}>
+                                                                                    <Button>
+                                                                                                Voltar para tela de usuário
+                                                                                    </Button>
+                                                                        </Link>
                                                             </div>
+
                                                 )}
                                     </div>
 

@@ -11,6 +11,7 @@ class ContractController extends Controller
     public function store(Request $request, User $user)
         {        
             // a fazer antes de desativar os contrato verificar se possui algum outro ativo e qual foi a data de pagamento e valor para fazer a compensação no pagamento se necessário.
+            // a fazer, ativar contrato após confirmação do pix, atualizar informações de pagamento e inserir o valor do proximo mes para pagamento
             $validated = $request->validate([
                 'plan_id' => 'required|exists:plans,id'
             ]);
