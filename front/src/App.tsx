@@ -1,8 +1,10 @@
+import { Button } from "./components/ui/button";
+
 export function App() {
 
   return (
     <div>
-      Hello Wolrd!
+      <Button variant={"outline"}>clique aqui</Button>
     </ div>
   )
 }
