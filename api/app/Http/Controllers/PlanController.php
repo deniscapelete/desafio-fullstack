@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\PlanResource;
 use App\Models\Plan;
 
 class PlanController extends Controller
@@ -13,6 +14,7 @@ class PlanController extends Controller
      */
     public function index()
     {
-        return Plan::all();
+        $plans = Plan::all();
+        return response()->json(PlanResource::collection($plans));
     }
 }
