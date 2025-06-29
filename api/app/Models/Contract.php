@@ -8,6 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Contract extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'user_id',
+        'plan_id',
+        'active',
+    ];
 
     public function user()
     {
@@ -21,6 +26,6 @@ class Contract extends Model
 
     public function payment()
     {
-        return $this->hasMany(User::class);
+        return $this->hasMany(Payment::class);
     }
 }
