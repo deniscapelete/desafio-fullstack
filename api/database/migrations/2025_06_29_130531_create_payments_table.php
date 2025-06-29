@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('contract_id')->constrained('contracts')->onDelete('cascade');
             $table->date('due_date');
-            $table->decimal('amount_due ', 13, 2);
+            $table->decimal('amount_due', 13, 2);
             $table->string("method_payment");
             $table->string("category_payment");
             $table->date('date_payment')->nullable();
