@@ -12,6 +12,21 @@ use Illuminate\Support\Facades\DB;
 
 class ContractController extends Controller
 {
+    public function index()
+    {
+        $authUserId = 1;
+        $activeContract = Contract::where('user_id', $authUserId)
+            ->where('active', true)
+            ->get()
+            ->last();
+
+        if (!$activeContract) {
+            return response()->json(["message" => "Nenhum contrato ativo encontrado"], 404);
+        }
+
+        return response()->json(new ContractResource($activeContract));
+    }
+
     public function store(StoreContract $request)
     {
         $data = $request->validated();

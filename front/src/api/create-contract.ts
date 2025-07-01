@@ -1,13 +1,5 @@
 import { api } from "@/lib/axios";
-import type { Plan } from "./get-plans";
-
-export interface Contract {
-  id: number
-  plan: Plan
-  active: boolean
-  created_at: string
-}
-
+import type { Contract } from "./get-active-contract";
 interface CreateContractBody {
   plan_id: number
 }
