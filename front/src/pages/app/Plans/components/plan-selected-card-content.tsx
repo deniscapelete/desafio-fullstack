@@ -6,7 +6,7 @@ import { useContract } from "@/hooks/use-contract";
 import { DialogClose } from "@radix-ui/react-dialog";
 
 interface PlanSelectedCardContentProps {
-  plan: Plan,
+  plan: Plan
 }
 
 export function PlanSelectedCardContent({ plan }: PlanSelectedCardContentProps) {
