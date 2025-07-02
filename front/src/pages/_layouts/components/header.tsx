@@ -1,5 +1,5 @@
 import logo from "@/assets/logo.png"
-import { FileText, Home } from "lucide-react"
+import { DollarSign, FileText, Home } from "lucide-react"
 import { NavLink } from "./nav-link"
 import { UserAccount } from "./user_account"
 export function Header() {
@@ -16,6 +16,10 @@ export function Header() {
           <NavLink to="/planos">
             <FileText className="h-4 w-4" />
             Planos
+          </NavLink>
+          <NavLink to="/pagamentos">
+            <DollarSign className="h-4 w-4" />
+            Pagamentos
           </NavLink>
         </nav>
         <UserAccount />

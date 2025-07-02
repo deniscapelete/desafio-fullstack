@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ContractController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -29,3 +30,5 @@ Route::apiResource('plans', PlanController::class, ['only' => 'index']);
 Route::apiResource('contracts', ContractController::class, ['only' => 'index', 'store']);
 
 Route::apiSingleton('user', UserController::class, ['only' => 'show']);
+
+Route::apiResource('payments', PaymentController::class, ['only' => ['index']]);
