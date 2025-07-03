@@ -3,23 +3,34 @@ import { Button } from "@/components/ui/button";
 import { DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { formatCurrencyToBrl } from "@/helper/format-currency-to-brl";
 import { useContract } from "@/hooks/use-contract";
+import { useUpdateContract } from "@/hooks/use-update-contract";
 import { DialogClose } from "@radix-ui/react-dialog";
 
 interface PlanSelectedCardContentProps {
   plan: Plan
+  contractId?: number
+  existContractActive?: boolean
 }
 
-export function PlanSelectedCardContent({ plan }: PlanSelectedCardContentProps) {
+export function PlanSelectedCardContent({ plan, contractId, existContractActive }: PlanSelectedCardContentProps) {
 
   const { createContractFn, isPendingCreateContract } = useContract()
+  const { updateContractFn, isPendingUpdateContract } = useUpdateContract()
 
-  function handleCreateContract() {
+  function handleCreateOrUpdateContract() {
+    if (contractId) {
+      return updateContractFn({ plan_id: plan.id, contractId })
+    }
     createContractFn({ plan_id: plan.id })
   }
+
   return (
     <DialogContent className="flex flex-col w-80 h-auto p-4">
       <DialogHeader>
-        <DialogTitle className="text-orange-500 py-4 text-center">Deseja contratar este plano?</DialogTitle>
+        <DialogTitle className="text-orange-500 py-4 text-center">
+          {!existContractActive && 'Confirmar contratação do plano'}
+          {existContractActive && 'Confirmar alteração do plano'}
+        </DialogTitle>
       </DialogHeader>
       <DialogDescription asChild>
         <div className="text-left space-y-2">
@@ -34,7 +45,8 @@ export function PlanSelectedCardContent({ plan }: PlanSelectedCardContentProps) 
         </DialogClose>
         <Button
           className="bg-orange-500 hover:bg-orange-600 hover:cursor-pointer"
-          onClick={handleCreateContract}
+          onClick={handleCreateOrUpdateContract}
+          disabled={isPendingCreateContract || isPendingUpdateContract}
         >
           {isPendingCreateContract}
           Confirmar

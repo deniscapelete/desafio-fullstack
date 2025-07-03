@@ -13,6 +13,7 @@ interface PlanCardProps {
 
 export function PlanCard({ plan, contract }: PlanCardProps) {
   const isActivePlan = contract?.plan?.id === plan.id
+  const existContractActive = contract?.active
 
   return (
 
@@ -39,7 +40,7 @@ export function PlanCard({ plan, contract }: PlanCardProps) {
           </CardContent>
         </Card>
       </DialogTrigger>
-      <PlanSelectedCardContent plan={plan} />
+      <PlanSelectedCardContent plan={plan} contractId={contract?.id} existContractActive={existContractActive} />
     </Dialog>
   )
 }
