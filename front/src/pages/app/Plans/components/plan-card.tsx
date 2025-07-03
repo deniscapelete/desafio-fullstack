@@ -5,6 +5,7 @@ import { formatCurrencyToBrl } from "@/helper/format-currency-to-brl";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import { PlanSelectedCardContent } from "./plan-selected-card-content";
 import type { Contract } from "@/api/get-active-contract";
+import { useState } from "react";
 
 interface PlanCardProps {
   plan: Plan
@@ -15,9 +16,11 @@ export function PlanCard({ plan, contract }: PlanCardProps) {
   const isActivePlan = contract?.plan?.id === plan.id
   const existContractActive = contract?.active
 
+  const [open, setOpen] = useState(false);
+
   return (
 
-    <Dialog >
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger disabled={isActivePlan} className="text-left">
         <Card
           className="w-72 h-fit hover:opacity-65 hover:cursor-pointer data-[active=true]:border-orange-500 data-[active=true]:border-2 data-[active=true]:cursor-not-allowed data-[active=true]:opacity-65"
@@ -40,7 +43,7 @@ export function PlanCard({ plan, contract }: PlanCardProps) {
           </CardContent>
         </Card>
       </DialogTrigger>
-      <PlanSelectedCardContent plan={plan} contractId={contract?.id} existContractActive={existContractActive} />
+      <PlanSelectedCardContent plan={plan} contractId={contract?.id} existContractActive={existContractActive} setOpen={setOpen} />
     </Dialog>
   )
 }

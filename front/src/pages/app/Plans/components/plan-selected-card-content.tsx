@@ -10,14 +10,18 @@ interface PlanSelectedCardContentProps {
   plan: Plan
   contractId?: number
   existContractActive?: boolean
+  setOpen?: (open: boolean) => void;
 }
 
-export function PlanSelectedCardContent({ plan, contractId, existContractActive }: PlanSelectedCardContentProps) {
+export function PlanSelectedCardContent({ plan, contractId, existContractActive, setOpen }: PlanSelectedCardContentProps) {
 
   const { createContractFn, isPendingCreateContract } = useContract()
   const { updateContractFn, isPendingUpdateContract } = useUpdateContract()
 
   function handleCreateOrUpdateContract() {
+    setTimeout(() => {
+      setOpen?.(false);
+    }, 500);
     if (contractId) {
       return updateContractFn({ plan_id: plan.id, contractId })
     }
@@ -36,7 +40,7 @@ export function PlanSelectedCardContent({ plan, contractId, existContractActive 
         <div className="text-left space-y-2">
           <p><span className="font-bold">Descrição: </span>{plan.description}</p>
           <p><span className="font-bold">Preço: </span>{formatCurrencyToBrl(plan.price)}</p>
-          <p><span className="font-bold">Armazenamento: </span>{plan.gigabytesStorage}</p>
+          <p><span className="font-bold">Armazenamento: </span>{plan.gigabytesStorage} GB</p>
         </div>
       </DialogDescription>
       <DialogFooter className="flex flex-row pt-4">
