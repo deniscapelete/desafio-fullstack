@@ -129,7 +129,7 @@ class ContractController extends Controller
 
             Payment::create([
                 "contract_id" => $newContract->id,
-                "method_payment" => "Pix",
+                "method_payment" => "Saldo aplicado",
                 "category_payment" => "Assinatura",
                 "due_date" => Carbon::now(),
                 "date_payment" => Carbon::now(),
