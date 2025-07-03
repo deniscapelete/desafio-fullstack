@@ -21,7 +21,7 @@ export function UserAccount() {
               {fallBackAvatar({ name: user.name })}
             </AvatarFallback>
           </Avatar>
-          <span>{user.name}</span>
+          <span className='hidden sm:inline'>{user.name}</span>
         </>
       )}
       {
