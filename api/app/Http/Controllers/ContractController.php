@@ -79,7 +79,7 @@ class ContractController extends Controller
         $newPlan = Plan::find($planId);
 
         $daysUsedPlan = Carbon::now()->diffInDays($lastPayment->due_date);
-        $valueByDay = $lastPayment->amount_due / 30;
+        $valueByDay = $oldPlan->price / 30;
 
         $usageValue = $valueByDay * $daysUsedPlan;
 
